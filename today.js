@@ -18,7 +18,7 @@
     const el = document.getElementById(id);
     if (!list.length) { el.innerHTML = '<li class="empty">None in this run.</li>'; return; }
     el.innerHTML = (mine.length ? `<li><strong>In my role (${mine.length})</strong></li>` + mine.map(item).join("") : "") +
-      `<li><strong>Everything else (${other.length})</strong></li>` + other.slice(0, 50).map(item).join("") +
+      (other.length ? `<li><strong>Everything else (${other.length})</strong></li>` : "") + other.slice(0, 50).map(item).join("") +
       (other.length > 50 ? `<li class="muted">…and ${other.length - 50} more — see Browse → All postings.</li>` : "");
   };
   fill("new", rows.filter(r => r.first_seen === day && !r.first_run));

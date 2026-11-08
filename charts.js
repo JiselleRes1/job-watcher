@@ -3,7 +3,7 @@ const Charts = (() => {
   const NS = "http://www.w3.org/2000/svg";
   const COLORS = ["var(--c1)", "var(--c2)", "var(--c3)", "var(--c4)"];
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const nice = max => { if (max <= 5) return 5; const p = 10 ** Math.floor(Math.log10(max)); return Math.ceil(max / p) * p; };
+  const nice = max => { if (max <= 4) return 4; const p = 10 ** Math.floor(Math.log10(max)) / 2; return Math.ceil(max / (p * 4)) * p * 4; };
 
   /* Vertical grouped bars. series: [{name, values:[]}] */
   function bars(el, labels, series, { height = 260, ariaLabel = "Bar chart", rawLabels = false } = {}) {
