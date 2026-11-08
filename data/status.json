@@ -1,8 +1,8 @@
 {
-  "run_time": "2026-11-08T17:20:01Z",
+  "run_time": "2026-11-08T17:48:06Z",
   "first_run_date": "2026-11-08",
   "days_with_success": 1,
-  "open": 6452,
+  "open": 8139,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
@@ -20,6 +20,11 @@
       "name": "jbhunt",
       "ok": true,
       "count": 447
+    },
+    {
+      "name": "att",
+      "ok": true,
+      "count": 1118
     },
     {
       "name": "mckesson",
@@ -47,6 +52,16 @@
       "count": 369
     },
     {
+      "name": "kraftheinz",
+      "ok": true,
+      "count": 923
+    },
+    {
+      "name": "smucker",
+      "ok": true,
+      "count": 114
+    },
+    {
       "name": "conagra",
       "ok": true,
       "count": 217
@@ -65,21 +80,6 @@
       "name": "colliers",
       "ok": true,
       "count": 261
-    },
-    {
-      "name": "affirm",
-      "ok": true,
-      "count": 222
-    },
-    {
-      "name": "sofi",
-      "ok": true,
-      "count": 46
-    },
-    {
-      "name": "block",
-      "ok": true,
-      "count": 200
     }
   ]
 }

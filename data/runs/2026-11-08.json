@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-11-08T17:20:01Z",
+  "run_time": "2026-11-08T17:48:06Z",
   "sources": [
     {
       "name": "tyson",
@@ -15,6 +15,11 @@
       "name": "jbhunt",
       "ok": true,
       "count": 447
+    },
+    {
+      "name": "att",
+      "ok": true,
+      "count": 1118
     },
     {
       "name": "mckesson",
@@ -42,6 +47,16 @@
       "count": 369
     },
     {
+      "name": "kraftheinz",
+      "ok": true,
+      "count": 923
+    },
+    {
+      "name": "smucker",
+      "ok": true,
+      "count": 114
+    },
+    {
       "name": "conagra",
       "ok": true,
       "count": 217
@@ -60,21 +75,6 @@
       "name": "colliers",
       "ok": true,
       "count": 261
-    },
-    {
-      "name": "affirm",
-      "ok": true,
-      "count": 222
-    },
-    {
-      "name": "sofi",
-      "ok": true,
-      "count": 46
-    },
-    {
-      "name": "block",
-      "ok": true,
-      "count": 200
     }
   ]
 }
