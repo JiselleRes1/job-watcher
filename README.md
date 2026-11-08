@@ -8,9 +8,9 @@ is gone, opens a GitHub Issue with the changes, and publishes the result to a we
 (GitHub Pages).
 
 **Role watched:** financial analyst and close equivalents (FP&A, cost, pricing, treasury,
-credit and accounting analysts). **Employers:** consumer-goods, logistics and technology
-companies headquartered in or with offices in Northwest Arkansas or the Dallas area, plus a
-few fintech and real-estate firms.
+credit and accounting analysts). **Employers:** consumer-goods, logistics, aerospace and
+technology companies headquartered in or with offices in Northwest Arkansas or the Dallas
+area, plus a real-estate firm.
 
 Live site: https://jiselleres1.github.io/job-watcher/
 
@@ -48,7 +48,7 @@ python -m pipeline.run --no-issue      # skips the GitHub Issue step
 
 | Path | What it does |
 |---|---|
-| `pipeline/sources.py` | The 15 sources; one fetcher and one converter per applicant tracking system (Workday, Oracle, Greenhouse) |
+| `pipeline/sources.py` | The 15 sources; one fetcher and one converter per applicant tracking system (Workday, Oracle; a Greenhouse adapter is also included) |
 | `pipeline/title_rule.py` | The title rule that marks a posting `in_role` |
 | `pipeline/build.py` | Builds `data/history.csv` from `data/raw/` (first-seen, last-seen, removed, reopened logic) |
 | `pipeline/run.py` | The daily run: fetch, build, status file, Issues |
@@ -76,17 +76,17 @@ All 15 return JSON to a request with no login. No HTML is read.
 | walmart | Walmart | Workday | **Requested with the search term `financial analyst`** — the unfiltered board is capped at 2,000 results |
 | jbhunt | J.B. Hunt | Workday | |
 | mckesson | McKesson | Workday | |
+| att | AT&T | Workday | Dallas headquarters |
 | toyota | Toyota Motor North America | Workday | |
 | kimberlyclark | Kimberly-Clark | Workday | |
 | ti | Texas Instruments | Oracle Recruiting Cloud | |
 | rtx | Raytheon (RTX) | Workday | **Requested with the search term `analyst`** — the full board is about 4,600 postings and growing, so it is kept under the 5,000 limit |
+| kraftheinz | Kraft Heinz | Workday | |
+| smucker | J.M. Smucker | Workday | Has a Bentonville, AR office |
 | conagra | Conagra Brands | Workday | |
 | clorox | Clorox | Workday | |
 | mondelez | Mondelez International | Workday | |
 | colliers | Colliers | Workday | |
-| affirm | Affirm | Greenhouse | |
-| sofi | SoFi | Greenhouse | |
-| block | Block | Greenhouse | |
 
 Every posting the board returns is kept, not only the ones in my role.
 

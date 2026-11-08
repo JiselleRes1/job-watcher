@@ -32,6 +32,8 @@ SOURCES = [
     {"name": "jbhunt", "employer": "J.B. Hunt", "ats": "workday",
      "host": "jbhunt.wd501.myworkdayjobs.com", "tenant": "jbhunt", "site": "Careers"},
     # Dallas area
+    {"name": "att", "employer": "AT&T", "ats": "workday",
+     "host": "att.wd1.myworkdayjobs.com", "tenant": "att", "site": "ATTGeneral"},
     {"name": "mckesson", "employer": "McKesson", "ats": "workday",
      "host": "mckesson.wd3.myworkdayjobs.com", "tenant": "mckesson", "site": "External_Careers"},
     {"name": "toyota", "employer": "Toyota Motor North America", "ats": "workday",
@@ -44,6 +46,10 @@ SOURCES = [
      "host": "globalhr.wd5.myworkdayjobs.com", "tenant": "globalhr", "site": "REC_RTX_Ext_Gateway",
      "search": "analyst"},  # full board is ~4,600 and growing; stay under the 5,000 limit
     # Consumer goods
+    {"name": "kraftheinz", "employer": "Kraft Heinz", "ats": "workday",
+     "host": "heinz.wd1.myworkdayjobs.com", "tenant": "heinz", "site": "KraftHeinz_Careers"},
+    {"name": "smucker", "employer": "J.M. Smucker", "ats": "workday",
+     "host": "smucker.wd5.myworkdayjobs.com", "tenant": "smucker", "site": "US_External_Careers"},
     {"name": "conagra", "employer": "Conagra Brands", "ats": "workday",
      "host": "conagrabrands.wd1.myworkdayjobs.com", "tenant": "conagrabrands", "site": "Careers_US"},
     {"name": "clorox", "employer": "Clorox", "ats": "workday",
@@ -54,10 +60,6 @@ SOURCES = [
     {"name": "colliers", "employer": "Colliers", "ats": "workday",
      "host": "colliers.wd3.myworkdayjobs.com", "tenant": "colliers",
      "site": "Colliers-External-Career-Site"},
-    # Finance / fintech (Greenhouse)
-    {"name": "affirm", "employer": "Affirm", "ats": "greenhouse", "board": "affirm"},
-    {"name": "sofi", "employer": "SoFi", "ats": "greenhouse", "board": "sofi"},
-    {"name": "block", "employer": "Block", "ats": "greenhouse", "board": "block"},
 ]
 
 

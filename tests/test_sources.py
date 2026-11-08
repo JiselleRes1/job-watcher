@@ -47,12 +47,15 @@ def test_oracle_conversion():
     assert row["url"] == "https://careers.ti.com/en/sites/CX/job/25010443"
 
 
+GREENHOUSE = {"name": "gh", "employer": "Example", "ats": "greenhouse", "board": "example"}
+
+
 def test_greenhouse_conversion():
     raw = {"id": 7607567003, "title": "Analyst II, Credit", "location": {"name": "Remote US"},
            "departments": [{"name": "Credit"}], "first_published": "2026-02-02T10:00:00-05:00",
            "absolute_url": "https://job-boards.greenhouse.io/affirm/jobs/7607567003"}
-    row = convert(source_by_name("affirm"), raw, DAY)
-    assert row["posting_id"] == "affirm:7607567003"
+    row = convert(GREENHOUSE, raw, DAY)
+    assert row["posting_id"] == "gh:7607567003"
     assert row["source_id"] == "7607567003"
     assert row["department"] == "Credit"
     assert row["posted_date"] == "2026-02-02"
@@ -60,7 +63,7 @@ def test_greenhouse_conversion():
 
 
 def test_greenhouse_missing_optional_fields_are_empty():
-    row = convert(source_by_name("sofi"), {"id": 1, "title": "t"}, DAY)
+    row = convert(GREENHOUSE, {"id": 1, "title": "t"}, DAY)
     assert row["location"] == "" and row["department"] == "" and row["posted_date"] == ""
 
 
