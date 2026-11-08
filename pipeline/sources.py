@@ -41,7 +41,8 @@ SOURCES = [
     {"name": "ti", "employer": "Texas Instruments", "ats": "oracle",
      "host": "edbz.fa.us2.oraclecloud.com", "site": "CX", "public_host": "careers.ti.com"},
     {"name": "rtx", "employer": "Raytheon (RTX)", "ats": "workday",
-     "host": "globalhr.wd5.myworkdayjobs.com", "tenant": "globalhr", "site": "REC_RTX_Ext_Gateway"},
+     "host": "globalhr.wd5.myworkdayjobs.com", "tenant": "globalhr", "site": "REC_RTX_Ext_Gateway",
+     "search": "analyst"},  # full board is ~4,600 and growing; stay under the 5,000 limit
     # Consumer goods
     {"name": "conagra", "employer": "Conagra Brands", "ats": "workday",
      "host": "conagrabrands.wd1.myworkdayjobs.com", "tenant": "conagrabrands", "site": "Careers_US"},
