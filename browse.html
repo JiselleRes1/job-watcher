@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse · Job Watcher</title>
+<meta name="description" content="Search and filter open postings; star the ones you want to keep.">
+<meta name="theme-color" content="#1f6f54">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Browse</h1>
+  <p class="sub" id="summary">Loading…</p>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Which postings">
+      <button id="scope-role" aria-pressed="true">My role</button>
+      <button id="scope-all" aria-pressed="false">All postings</button>
+    </div>
+    <label>Employer<select id="employer"><option value="">All employers</option></select></label>
+    <label>Location<input id="location" list="locations" placeholder="e.g. Dallas"><datalist id="locations"></datalist></label>
+    <label>Days open<select id="days">
+      <option value="">Any</option><option value="7">7 or fewer</option><option value="14">14 or fewer</option>
+      <option value="30">30 or fewer</option><option value="31+">More than 30</option></select></label>
+    <label>Search titles<input id="q" type="search" placeholder="e.g. FP&amp;A"></label>
+    <label>Sort by first seen<select id="sort"><option value="new">Newest first</option><option value="old">Oldest first</option></select></label>
+    <button id="shortlist-only" aria-pressed="false">★ Shortlist (<span id="shortlist-count">0</span>)</button>
+  </div>
+  <p class="muted" id="note"></p>
+  <section class="card" id="results"></section>
+  <p><button id="more" hidden>Show more</button></p>
+</main>
+<script src="app.js"></script>
+<script src="browse.js"></script>
+</body>
+</html>
