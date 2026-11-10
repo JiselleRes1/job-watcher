@@ -59,3 +59,14 @@ def test_issue_body_lists_links_and_handles_empty_day():
     assert "_None_" in body and "sofi" in body
     empty = run.issue_body("2026-11-08", [], [], [])
     assert empty.count("_None_") == 2
+
+
+def test_issue_body_is_capped_and_lists_my_role_first():
+    rows = [{"title": f"Machine Operator {i}", "url": f"https://x/{i}", "employer": "Tyson",
+             "location": "AR", "in_role": False} for i in range(5000)]
+    rows.append({"title": "Financial Analyst", "url": "https://x/fa", "employer": "Clorox",
+                 "location": "", "in_role": True})
+    body = run.issue_body("2026-11-09", rows, rows, [])
+    assert len(body) < 65536
+    assert "…and" in body and "(5001)" in body
+    assert body.index("Financial Analyst") < body.index("Machine Operator 0")

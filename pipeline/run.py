@@ -69,25 +69,37 @@ def changes_for(rows, day):
 
 
 # ---------------------------------------------------------------- Issues
+MAX_BODY = 60000  # GitHub Issue bodies are limited to 65,536 characters
+
+
 def issue_body(day, new, removed, results):
-    def lines(rs):
+    def lines(rs, budget):
+        """List postings (my role first) until the character budget runs out."""
         if not rs:
             return ["_None_"]
-        return [f"- [{r['title']}]({r['url']}) — {r['employer']}"
-                f"{' · ' + r['location'] if r['location'] else ''}" for r in rs]
+        out, used = [], 0
+        for i, r in enumerate(sorted(rs, key=lambda r: not r.get("in_role"))):
+            line = (f"- [{r['title']}]({r['url']}) — {r['employer']}"
+                    f"{' · ' + r['location'] if r['location'] else ''}"
+                    f"{' ⭐ my role' if r.get('in_role') else ''}")
+            if used + len(line) > budget:
+                out.append(f"_…and {len(rs) - i} more (see Browse on the site)._")
+                break
+            out.append(line)
+            used += len(line) + 1
+        return out
 
     failed = [r["name"] for r in results if not r["ok"]]
-    out = [f"## New postings ({len(new)})", *lines(new), "",
-           f"## Removed postings ({len(removed)})", *lines(removed), ""]
-    if failed:
-        out.append(f"Sources that failed today: {', '.join(failed)}")
-    else:
-        out.append("All sources succeeded today.")
+    footer = (f"Sources that failed today: {', '.join(failed)}" if failed
+              else "All sources succeeded today.")
+    budget = (MAX_BODY - len(footer) - 200) // 2
+    out = [f"## New postings ({len(new)})", *lines(new, budget), "",
+           f"## Removed postings ({len(removed)})", *lines(removed, budget), "", footer]
     return "\n".join(out)
 
 
-def gh(*args, check=True):
-    return subprocess.run(["gh", *args], capture_output=True, text=True, check=check)
+def gh(*args, check=True, stdin=None):
+    return subprocess.run(["gh", *args], capture_output=True, text=True, check=check, input=stdin)
 
 
 def update_issues(day, body):
@@ -96,9 +108,9 @@ def update_issues(day, body):
                             "--json", "number,title,state").stdout or "[]")
     today = next((i for i in listing if i["title"] == day), None)
     if today is None:
-        gh("issue", "create", "--title", day, "--body", body)
+        gh("issue", "create", "--title", day, "--body-file", "-", stdin=body)
     else:
-        gh("issue", "edit", str(today["number"]), "--body", body)
+        gh("issue", "edit", str(today["number"]), "--body-file", "-", stdin=body)
         if today["state"] == "CLOSED":
             gh("issue", "reopen", str(today["number"]))
     for issue in listing:
@@ -129,7 +141,11 @@ def main(argv=None):
     new, removed = changes_for(rows, day)
     print(f"new={len(new)} removed={len(removed)} open={status['open']}")
     if not args.no_issue:
-        update_issues(day, issue_body(day, new, removed, results))
+        try:
+            update_issues(day, issue_body(day, new, removed, results))
+        except Exception as exc:  # the data must still be committed if the Issue step fails
+            detail = getattr(exc, "stderr", "") or exc
+            print(f"::warning::Issue step failed: {detail}", file=sys.stderr)
     return 0
 
 
