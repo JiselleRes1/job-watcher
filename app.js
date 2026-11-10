@@ -1,4 +1,14 @@
 /* Shared by every page: navigation, data loading, small helpers. */
+const ELF = `<svg viewBox="0 0 48 48" aria-hidden="true">
+  <path d="M13 29 L2 22 L14 24Z M35 29 L46 22 L34 24Z" fill="#f0b98d"/>
+  <circle cx="24" cy="29" r="11" fill="#f7d0a8"/>
+  <path d="M10 25 Q24 -4 38 25 Q24 18 10 25Z" fill="#2f9e5f"/>
+  <path d="M11 24 Q24 31 37 24" stroke="#c4283a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M26 5 Q40 4 42 15" stroke="#2f9e5f" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="42" cy="16" r="4.2" fill="#fff"/>
+  <circle cx="20" cy="30" r="1.7" fill="#2b2b2b"/><circle cx="28" cy="30" r="1.7" fill="#2b2b2b"/>
+  <circle cx="16" cy="34" r="2.2" fill="#f4a3a3" opacity=".7"/><circle cx="32" cy="34" r="2.2" fill="#f4a3a3" opacity=".7"/>
+  <path d="M20 35 Q24 40 28 35" stroke="#7a3b2a" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>`;
+
 const JW = (() => {
   const PAGES = [["index.html", "Today"], ["browse.html", "Browse"], ["market.html", "Market"]];
 
@@ -7,7 +17,7 @@ const JW = (() => {
     const links = PAGES.map(([href, label]) =>
       `<a class="link" href="${href}"${href === here ? ' aria-current="page"' : ""}>${label}</a>`).join("");
     document.body.insertAdjacentHTML("afterbegin",
-      `<header class="nav"><div class="nav-inner"><a class="brand" href="index.html">Job Watcher</a>${links}</div></header>`);
+      `<header class="nav"><div class="nav-inner"><a class="brand" href="index.html" data-sleigh>${ELF}<span>Job Watcher<small>North Pole edition</small></span></a>${links}</div></header>`);
   }
 
   function parseCSV(text) {
@@ -56,5 +66,5 @@ const JW = (() => {
   if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
   document.addEventListener("DOMContentLoaded", () => { nav(); offlineBanner(); });
 
-  return { loadStatus, loadHistory, parseCSV, diffDays, addDays, esc, fmtTime };
+  return { loadStatus, loadHistory, parseCSV, diffDays, addDays, esc, fmtTime, elfNote: msg => `<div class="elf-empty">${ELF}<span>${msg}</span></div>` };
 })();

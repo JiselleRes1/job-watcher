@@ -47,20 +47,21 @@
       const d = JW.diffDays(today, r.first_seen), on = shortlist.has(r.posting_id);
       return `<div class="job"><button class="star" data-id="${esc(r.posting_id)}" aria-pressed="${on}" aria-label="${on ? "Remove from" : "Add to"} shortlist">${on ? "★" : "☆"}</button>
         <div><div class="t">${esc(r.title)}</div><div class="muted">${esc(r.employer)}${r.location ? " · " + esc(r.location) : ""} · first seen ${esc(r.first_seen)} (${d} day${d === 1 ? "" : "s"} open${r.first_run ? "+" : ""})</div></div>
-        <a class="apply" href="${esc(r.url)}" target="_blank" rel="noopener">Apply</a></div>`;
-    }).join("") : '<p class="empty">No postings match these filters.</p>';
+        <a class="apply" data-sleigh href="${esc(r.url)}" target="_blank" rel="noopener">Apply</a></div>`;
+    }).join("") : '${JW.elfNote("No postings match — the elves are still searching the workshop!")}';
     $("more").hidden = out.length <= state.limit;
   }
 
   const rerender = () => { state.limit = 100; render(); };
   ["employer", "location", "days", "q", "sort"].forEach(id => $(id).addEventListener("input", rerender));
-  const scope = role => { state.role = role; $("scope-role").setAttribute("aria-pressed", role); $("scope-all").setAttribute("aria-pressed", !role); rerender(); };
+  const scope = role => { Theme.iceOver($("results")); state.role = role; $("scope-role").setAttribute("aria-pressed", role); $("scope-all").setAttribute("aria-pressed", !role); rerender(); };
   $("scope-role").onclick = () => scope(true); $("scope-all").onclick = () => scope(false);
-  $("shortlist-only").onclick = e => { state.only = !state.only; e.currentTarget.setAttribute("aria-pressed", state.only); rerender(); };
+  $("shortlist-only").onclick = e => { Theme.iceOver($("results")); state.only = !state.only; e.currentTarget.setAttribute("aria-pressed", state.only); rerender(); };
   $("more").onclick = () => { state.limit += 100; render(); };
   $("results").addEventListener("click", e => {
     const b = e.target.closest(".star"); if (!b) return;
-    const id = b.dataset.id; shortlist.has(id) ? shortlist.delete(id) : shortlist.add(id);
+    const id = b.dataset.id, adding = !shortlist.has(id); adding ? shortlist.add(id) : shortlist.delete(id);
+    if (adding) { const r = b.getBoundingClientRect(); Theme.sparkle(r.left + r.width / 2, r.top + r.height / 2, 18); }
     save(shortlist); render();
   });
   render();

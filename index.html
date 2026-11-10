@@ -5,24 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Today · Job Watcher</title>
 <meta name="description" content="What changed in the latest daily run.">
-<meta name="theme-color" content="#1f6f54">
+<meta name="theme-color" content="#124a30">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>try{if(sessionStorage.getItem("jw.frost"))document.documentElement.classList.add("frosted")}catch(e){}</script>
+
 </head>
 <body>
 <main>
-  <h1>Today</h1>
+  <h1 data-sleigh>Today at the Workshop</h1>
   <p class="sub" id="last-run">Loading…</p>
   <div class="stats" id="stats"></div>
   <div class="cols">
-    <section class="card"><h2>New postings</h2><p class="muted">First seen in the latest run (postings already open when watching began are left out).</p><ul class="plain" id="new"></ul></section>
-    <section class="card"><h2>Removed postings</h2><p class="muted">No longer listed by their source in the latest run.</p><ul class="plain" id="removed"></ul></section>
+    <section class="card"><h2>🎁 New postings</h2><p class="muted">Fresh from the workshop: first seen in the latest run (postings already open when watching began are left out).</p><ul class="plain" id="new"></ul></section>
+    <section class="card"><h2>🫠 Removed postings</h2><p class="muted">Melted away: no longer listed by their source in the latest run.</p><ul class="plain" id="removed"></ul></section>
   </div>
-  <section class="card"><h2>Sources</h2><table><thead><tr><th>Source</th><th>Status</th><th>Postings</th></tr></thead><tbody id="sources"></tbody></table></section>
+  <section class="card"><h2>🧝 Sources — the elves on duty</h2><table><thead><tr><th>Source</th><th>Status</th><th>Postings</th></tr></thead><tbody id="sources"></tbody></table></section>
 </main>
 <script src="app.js"></script>
 <script src="today.js"></script>
+<script src="theme.js"></script>
 </body>
 </html>

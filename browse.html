@@ -5,19 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Browse · Job Watcher</title>
 <meta name="description" content="Search and filter open postings; star the ones you want to keep.">
-<meta name="theme-color" content="#1f6f54">
+<meta name="theme-color" content="#124a30">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>try{if(sessionStorage.getItem("jw.frost"))document.documentElement.classList.add("frosted")}catch(e){}</script>
+
 </head>
 <body>
 <main>
-  <h1>Browse</h1>
+  <h1 data-sleigh>Browse the Wish List</h1>
   <p class="sub" id="summary">Loading…</p>
   <div class="controls">
     <div class="seg" role="group" aria-label="Which postings">
-      <button id="scope-role" aria-pressed="true">My role</button>
+      <button id="scope-role" aria-pressed="true">🎅 My role</button>
       <button id="scope-all" aria-pressed="false">All postings</button>
     </div>
     <label>Employer<select id="employer"><option value="">All employers</option></select></label>
@@ -27,7 +32,7 @@
       <option value="30">30 or fewer</option><option value="31+">More than 30</option></select></label>
     <label>Search titles<input id="q" type="search" placeholder="e.g. FP&amp;A"></label>
     <label>Sort by first seen<select id="sort"><option value="new">Newest first</option><option value="old">Oldest first</option></select></label>
-    <button id="shortlist-only" aria-pressed="false">★ Shortlist (<span id="shortlist-count">0</span>)</button>
+    <button id="shortlist-only" aria-pressed="false">🎁 Shortlist (<span id="shortlist-count">0</span>)</button>
   </div>
   <p class="muted" id="note"></p>
   <section class="card" id="results"></section>
@@ -35,5 +40,6 @@
 </main>
 <script src="app.js"></script>
 <script src="browse.js"></script>
+<script src="theme.js"></script>
 </body>
 </html>

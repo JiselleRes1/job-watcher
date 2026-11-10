@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Market · Job Watcher</title>
 <meta name="description" content="What the history says about hiring at the watched employers.">
-<meta name="theme-color" content="#1f6f54">
+<meta name="theme-color" content="#124a30">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>try{if(sessionStorage.getItem("jw.frost"))document.documentElement.classList.add("frosted")}catch(e){}</script>
+
 </head>
 <body>
 <main>
-  <h1>Market</h1>
+  <h1 data-sleigh>Market Winter Forecast</h1>
   <p class="sub" id="asof">Loading…</p>
   <div id="sections"></div>
 </main>
 <script src="app.js"></script>
 <script src="charts.js"></script>
 <script src="market.js"></script>
+<script src="theme.js"></script>
 </body>
 </html>

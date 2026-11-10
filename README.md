@@ -62,7 +62,8 @@ python -m pipeline.run --no-issue      # skips the GitHub Issue step
 | `index.html`, `today.js` | Today page |
 | `browse.html`, `browse.js` | Browse page (filters, search, sort, apply links, starred shortlist) |
 | `market.html`, `market.js`, `charts.js` | Market page: six findings computed in the browser from `history.csv` |
-| `app.js`, `style.css` | Shared navigation, data loading, fonts and colors |
+| `app.js`, `style.css` | Shared navigation, data loading, fonts and colors (the North Pole theme) |
+| `theme.js` | Decoration: falling snow, freeze-over page transitions, Santa's sleigh, sparkles (off when the visitor prefers reduced motion) |
 | `manifest.webmanifest`, `sw.js`, `icon-*.png` | Makes the site installable and usable offline |
 | `requirements.txt` | Python dependencies (`requests`, `pytest`) |
 
@@ -125,3 +126,7 @@ Three pages share one navigation bar, fonts and colors, and load the two data fi
 browser. The site is installable (web app manifest + service worker). Online, the pages load
 the data from the network; offline, they show the last data loaded. The shortlist (stars) is
 saved in the browser's `localStorage`.
+
+The look is a North Pole workshop: an elf mascot, falling snow, pages that freeze over and thaw when you
+navigate, and Santa's sleigh that flies by when you hover the logo, the stat cards or an Apply button.
+The effects are skipped for visitors who prefer reduced motion.

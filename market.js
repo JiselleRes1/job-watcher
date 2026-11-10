@@ -71,7 +71,7 @@
 
   const root = document.getElementById("sections");
   sections.forEach((s, i) => {
-    root.insertAdjacentHTML("beforeend", `<section class="card"><h2>${i + 1}. ${esc(s.heading)}</h2><p class="muted">${esc(s.para)}</p><div class="chart" id="chart-${i}"></div></section>`);
+    root.insertAdjacentHTML("beforeend", `<section class="card"><h2 data-sleigh>${["🎁","🫠","🧝","⏳","🛷","📍"][i]} ${i + 1}. ${esc(s.heading)}</h2><p class="muted">${esc(s.para)}</p><div class="chart" id="chart-${i}"></div></section>`);
     s.draw(document.getElementById(`chart-${i}`));
   });
 })();

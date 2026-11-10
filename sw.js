@@ -1,8 +1,8 @@
 /* Service worker: app shell cached on install; data files network-first so the
    latest data loads online and the last-loaded copy is shown offline. */
-const VERSION = "v1";
+const VERSION = "v2";
 const SHELL = ["./", "index.html", "browse.html", "market.html", "style.css", "app.js", "charts.js",
-  "today.js", "browse.js", "market.js", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
+  "today.js", "browse.js", "market.js", "theme.js", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 const DATA = ["data/history.csv", "data/status.json"];
 
 self.addEventListener("install", e => {
