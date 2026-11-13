@@ -1,85 +1,85 @@
 {
-  "run_time": "2026-11-12T18:58:38Z",
+  "run_time": "2026-11-13T18:34:33Z",
   "first_run_date": "2026-11-08",
-  "days_with_success": 4,
-  "open": 8180,
-  "new_today": 310,
-  "removed_today": 337,
+  "days_with_success": 5,
+  "open": 8161,
+  "new_today": 256,
+  "removed_today": 291,
   "sources": [
     {
       "name": "tyson",
       "ok": true,
-      "count": 734
+      "count": 725
     },
     {
       "name": "walmart",
       "ok": true,
-      "count": 540
+      "count": 534
     },
     {
       "name": "jbhunt",
       "ok": true,
-      "count": 441
+      "count": 438
     },
     {
       "name": "att",
       "ok": true,
-      "count": 1124
+      "count": 1139
     },
     {
       "name": "mckesson",
       "ok": true,
-      "count": 665
+      "count": 655
     },
     {
       "name": "toyota",
       "ok": true,
-      "count": 120
+      "count": 113
     },
     {
       "name": "kimberlyclark",
       "ok": true,
-      "count": 131
+      "count": 138
     },
     {
       "name": "ti",
       "ok": true,
-      "count": 918
+      "count": 910
     },
     {
       "name": "rtx",
       "ok": true,
-      "count": 361
+      "count": 357
     },
     {
       "name": "kraftheinz",
       "ok": true,
-      "count": 928
+      "count": 929
     },
     {
       "name": "smucker",
       "ok": true,
-      "count": 112
+      "count": 114
     },
     {
       "name": "conagra",
       "ok": true,
-      "count": 221
+      "count": 214
     },
     {
       "name": "clorox",
       "ok": true,
-      "count": 196
+      "count": 198
     },
     {
       "name": "mondelez",
       "ok": true,
-      "count": 1420
+      "count": 1429
     },
     {
       "name": "colliers",
       "ok": true,
-      "count": 269
+      "count": 268
     }
   ]
 }
