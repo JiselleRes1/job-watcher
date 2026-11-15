@@ -1,0 +1,80 @@
+{
+  "run_time": "2026-11-15T17:47:39Z",
+  "sources": [
+    {
+      "name": "tyson",
+      "ok": true,
+      "count": 716
+    },
+    {
+      "name": "walmart",
+      "ok": true,
+      "count": 536
+    },
+    {
+      "name": "jbhunt",
+      "ok": true,
+      "count": 436
+    },
+    {
+      "name": "att",
+      "ok": true,
+      "count": 1109
+    },
+    {
+      "name": "mckesson",
+      "ok": true,
+      "count": 655
+    },
+    {
+      "name": "toyota",
+      "ok": true,
+      "count": 104
+    },
+    {
+      "name": "kimberlyclark",
+      "ok": true,
+      "count": 136
+    },
+    {
+      "name": "ti",
+      "ok": true,
+      "count": 914
+    },
+    {
+      "name": "rtx",
+      "ok": true,
+      "count": 356
+    },
+    {
+      "name": "kraftheinz",
+      "ok": true,
+      "count": 932
+    },
+    {
+      "name": "smucker",
+      "ok": true,
+      "count": 115
+    },
+    {
+      "name": "conagra",
+      "ok": true,
+      "count": 212
+    },
+    {
+      "name": "clorox",
+      "ok": true,
+      "count": 191
+    },
+    {
+      "name": "mondelez",
+      "ok": true,
+      "count": 1421
+    },
+    {
+      "name": "colliers",
+      "ok": true,
+      "count": 271
+    }
+  ]
+}
