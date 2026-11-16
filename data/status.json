@@ -1,85 +1,85 @@
 {
-  "run_time": "2026-11-15T17:47:39Z",
+  "run_time": "2026-11-16T21:05:46Z",
   "first_run_date": "2026-11-08",
-  "days_with_success": 7,
-  "open": 8104,
-  "new_today": 11,
-  "removed_today": 70,
+  "days_with_success": 8,
+  "open": 8109,
+  "new_today": 8,
+  "removed_today": 3,
   "sources": [
     {
       "name": "tyson",
-      "ok": true,
-      "count": 716
+      "ok": false,
+      "count": 0
     },
     {
       "name": "walmart",
-      "ok": true,
-      "count": 536
+      "ok": false,
+      "count": 0
     },
     {
       "name": "jbhunt",
-      "ok": true,
-      "count": 436
+      "ok": false,
+      "count": 0
     },
     {
       "name": "att",
-      "ok": true,
-      "count": 1109
+      "ok": false,
+      "count": 0
     },
     {
       "name": "mckesson",
-      "ok": true,
-      "count": 655
+      "ok": false,
+      "count": 0
     },
     {
       "name": "toyota",
-      "ok": true,
-      "count": 104
+      "ok": false,
+      "count": 0
     },
     {
       "name": "kimberlyclark",
-      "ok": true,
-      "count": 136
+      "ok": false,
+      "count": 0
     },
     {
       "name": "ti",
       "ok": true,
-      "count": 914
+      "count": 919
     },
     {
       "name": "rtx",
-      "ok": true,
-      "count": 356
+      "ok": false,
+      "count": 0
     },
     {
       "name": "kraftheinz",
-      "ok": true,
-      "count": 932
+      "ok": false,
+      "count": 0
     },
     {
       "name": "smucker",
-      "ok": true,
-      "count": 115
+      "ok": false,
+      "count": 0
     },
     {
       "name": "conagra",
-      "ok": true,
-      "count": 212
+      "ok": false,
+      "count": 0
     },
     {
       "name": "clorox",
-      "ok": true,
-      "count": 191
+      "ok": false,
+      "count": 0
     },
     {
       "name": "mondelez",
-      "ok": true,
-      "count": 1421
+      "ok": false,
+      "count": 0
     },
     {
       "name": "colliers",
-      "ok": true,
-      "count": 271
+      "ok": false,
+      "count": 0
     }
   ]
 }
