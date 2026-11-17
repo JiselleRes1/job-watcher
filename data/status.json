@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-16T21:05:46Z",
+  "run_time": "2026-11-17T19:54:38Z",
   "first_run_date": "2026-11-08",
-  "days_with_success": 8,
-  "open": 8109,
-  "new_today": 8,
-  "removed_today": 3,
+  "days_with_success": 9,
+  "open": 8116,
+  "new_today": 21,
+  "removed_today": 17,
   "sources": [
     {
       "name": "tyson",
@@ -38,13 +38,13 @@
     },
     {
       "name": "kimberlyclark",
-      "ok": false,
-      "count": 0
+      "ok": true,
+      "count": 140
     },
     {
       "name": "ti",
       "ok": true,
-      "count": 919
+      "count": 922
     },
     {
       "name": "rtx",
