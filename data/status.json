@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-18T19:25:44Z",
+  "run_time": "2026-11-19T19:30:46Z",
   "first_run_date": "2026-11-08",
-  "days_with_success": 10,
-  "open": 8110,
-  "new_today": 31,
-  "removed_today": 39,
+  "days_with_success": 11,
+  "open": 8129,
+  "new_today": 23,
+  "removed_today": 5,
   "sources": [
     {
       "name": "tyson",
@@ -33,8 +33,8 @@
     },
     {
       "name": "toyota",
-      "ok": true,
-      "count": 121
+      "ok": false,
+      "count": 0
     },
     {
       "name": "kimberlyclark",
@@ -44,7 +44,7 @@
     {
       "name": "ti",
       "ok": true,
-      "count": 899
+      "count": 918
     },
     {
       "name": "rtx",
