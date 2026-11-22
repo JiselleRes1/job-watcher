@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-21T18:01:55Z",
+  "run_time": "2026-11-22T18:34:02Z",
   "first_run_date": "2026-11-08",
-  "days_with_success": 13,
-  "open": 8154,
-  "new_today": 28,
-  "removed_today": 22,
+  "days_with_success": 14,
+  "open": 8153,
+  "new_today": 0,
+  "removed_today": 1,
   "sources": [
     {
       "name": "tyson",
@@ -44,7 +44,7 @@
     {
       "name": "ti",
       "ok": true,
-      "count": 934
+      "count": 933
     },
     {
       "name": "rtx",
