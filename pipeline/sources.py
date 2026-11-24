@@ -4,11 +4,14 @@ Each applicant tracking system (ATS) has:
   * a fetcher   -> returns the list of raw posting dicts exactly as the board gave them
   * a converter -> turns one raw posting into the common columns (see COLUMNS_FROM_SOURCE)
 """
+import json as _json
 import re
 import time
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import date, timedelta
 
-import requests
 
 TIMEOUT = 30
 HEADERS = {"User-Agent": "job-watcher/1.0 (student project; daily job board reader)"}
@@ -73,20 +76,29 @@ def source_by_name(name):
 # --------------------------------------------------------------------------
 # HTTP helper
 # --------------------------------------------------------------------------
-def _request(method, url, retries=4, **kwargs):
-    """Request JSON, backing off (and honouring Retry-After) when the board says 429."""
+def _request(method, url, retries=4, params=None, json=None):
+    """Request JSON. Uses urllib: Workday's CDN answers 429 to the `requests` library from
+    GitHub's runners (every call, however slow) but serves urllib and curl normally.
+    Backs off, honouring Retry-After, on errors."""
+    if params:
+        url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
+    data, headers = None, dict(HEADERS)
+    if json is not None:
+        data = _json.dumps(json).encode()
+        headers["Content-Type"] = "application/json"
     last = None
     for attempt in range(retries):
+        retry_after = ""
         try:
-            resp = requests.request(method, url, headers=HEADERS, timeout=TIMEOUT, **kwargs)
-            resp.raise_for_status()
-            return resp.json()
-        except (requests.RequestException, ValueError) as exc:
+            req = urllib.request.Request(url, data=data, headers=headers, method=method)
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                return _json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            last, retry_after = exc, exc.headers.get("Retry-After", "") or ""
+        except (urllib.error.URLError, OSError, ValueError) as exc:
             last = exc
-            if attempt == retries - 1:
-                break
+        if attempt < retries - 1:
             wait = 5 * 2 ** attempt  # 5, 10, 20 seconds
-            retry_after = getattr(getattr(exc, "response", None), "headers", {}).get("Retry-After", "")
             if retry_after.isdigit():
                 wait = max(wait, min(int(retry_after), 120))
             time.sleep(wait)

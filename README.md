@@ -65,7 +65,7 @@ python -m pipeline.run --no-issue      # skips the GitHub Issue step
 | `app.js`, `style.css` | Shared navigation, data loading, fonts and colors (the North Pole theme) |
 | `theme.js` | Decoration: falling snow, freeze-over page transitions, Santa's sleigh, sparkles (off when the visitor prefers reduced motion) |
 | `manifest.webmanifest`, `sw.js`, `icon-*.png` | Makes the site installable and usable offline |
-| `requirements.txt` | Python dependencies (`requests`, `pytest`) |
+| `requirements.txt` | Python dependencies (`pytest`; the pipeline itself uses only the standard library) |
 
 ## Sources
 
