@@ -4,15 +4,34 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe Workday
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests httpx
+      - name: Probe from Python
         run: |
-          U=https://tysonfoods.wd5.myworkdayjobs.com/wday/cxs/tysonfoods/TSN/jobs
-          B='{"limit":20,"offset":0,"searchText":""}'
-          echo "runner ip: $(curl -s https://api.ipify.org)"
-          t() { echo "== $1"; shift; curl -s -o /tmp/o -D /tmp/h -w "code=%{http_code}\n" "$@"; head -c 300 /tmp/o; echo; grep -i "retry-after\|server:\|x-" /tmp/h | head -5; }
-          t "plain curl" -X POST -H 'Content-Type: application/json' -d "$B" $U
-          t "honest UA" -A "job-watcher/1.0 (student project; daily job board reader)" -X POST -H 'Content-Type: application/json' -d "$B" $U
-          t "honest UA + accept" -A "Mozilla/5.0 (compatible; job-watcher/1.0; +https://github.com/JiselleRes1/job-watcher)" -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Accept-Language: en-US' -d "$B" $U
-          sleep 20
-          t "after 20s, plain" -X POST -H 'Content-Type: application/json' -d "$B" $U
-          t "other tenant (clorox)" -X POST -H 'Content-Type: application/json' -d "$B" https://clorox.wd1.myworkdayjobs.com/wday/cxs/clorox/Clorox/jobs
+          python - <<'PY'
+          import json, time, urllib.request, requests, httpx
+          U="https://tysonfoods.wd5.myworkdayjobs.com/wday/cxs/tysonfoods/TSN/jobs"
+          B={"limit":20,"offset":0,"searchText":""}
+          H={"User-Agent":"job-watcher/1.0 (student project; daily job board reader)"}
+          def show(name, f):
+              try: print(name, f())
+              except Exception as e: print(name, "ERR", str(e)[:120])
+          show("requests", lambda: requests.post(U, json=B, headers=H, timeout=30).status_code)
+          show("requests default UA", lambda: requests.post(U, json=B, timeout=30).status_code)
+          def ul():
+              r=urllib.request.Request(U, data=json.dumps(B).encode(), headers={**H,"Content-Type":"application/json"})
+              return urllib.request.urlopen(r, timeout=30).status
+          show("urllib", ul)
+          show("httpx", lambda: httpx.post(U, json=B, headers=H, timeout=30).status_code)
+          # volume test: 40 pages in a row with requests
+          codes=[]
+          for i in range(40):
+              B2=dict(B, offset=20*i)
+              try: codes.append(requests.post(U, json=B2, headers=H, timeout=30).status_code)
+              except Exception as e: codes.append("E")
+              time.sleep(0.2)
+          print("40 pages requests:", codes)
+          PY
