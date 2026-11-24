@@ -11,6 +11,7 @@ import json
 import shutil
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -25,27 +26,36 @@ def utc_now():
     return datetime.now(timezone.utc)
 
 
-def fetch_all(day, now, raw_dir=RAW_DIR, sources=SOURCES, fetcher=fetch):
+def fetch_all(day, now, raw_dir=RAW_DIR, sources=SOURCES, fetcher=fetch, retry_wait=90):
     """Fetch every source. Returns the per-source results (ok, count, error)."""
     day_dir = Path(raw_dir) / day
     if day_dir.exists():  # a second run on the same day replaces that day's files
         shutil.rmtree(day_dir)
-    results = []
-    for src in sources:
+    results = {}
+
+    def attempt(src):
         try:
             postings = fetcher(src)
         except Exception as exc:  # one source failing must not stop the run
             print(f"FAIL {src['name']}: {exc}", file=sys.stderr)
-            results.append({"name": src["name"], "ok": False, "count": 0,
-                            "error": str(exc)[:200]})
-            continue
+            results[src["name"]] = {"name": src["name"], "ok": False, "count": 0, "error": str(exc)[:200]}
+            return
         day_dir.mkdir(parents=True, exist_ok=True)
         payload = {"source": src["name"], "fetched_at": now.isoformat(), "postings": postings}
         with gzip.open(day_dir / f"{src['name']}.json.gz", "wt", encoding="utf-8",
                        compresslevel=9) as fh:
             json.dump(payload, fh, separators=(",", ":"))
         print(f"ok   {src['name']}: {len(postings)}")
-        results.append({"name": src["name"], "ok": True, "count": len(postings)})
+        results[src["name"]] = {"name": src["name"], "ok": True, "count": len(postings)}
+
+    for src in sources:
+        attempt(src)
+    failed = [s for s in sources if not results[s["name"]]["ok"]]
+    if failed:  # boards rate-limit (429): wait, then give each failed source one more pass
+        time.sleep(retry_wait)
+        for src in failed:
+            attempt(src)
+    results = [results[s["name"]] for s in sources]
     return results
 
 

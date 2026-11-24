@@ -16,7 +16,7 @@ def test_one_failing_source_does_not_stop_the_run(tmp_path):
             raise RuntimeError("blocked")
         return [{"title": "Financial Analyst", "externalPath": "/p", "bulletFields": ["R1"]}]
 
-    results = run.fetch_all("2026-11-08", NOW, tmp_path, SRCS, fetcher)
+    results = run.fetch_all("2026-11-08", NOW, tmp_path, SRCS, fetcher, retry_wait=0)
     assert [(r["name"], r["ok"], r["count"]) for r in results] == [
         ("clorox", True, 1), ("sofi", False, 0)]
     assert (tmp_path / "2026-11-08" / "clorox.json.gz").exists()
@@ -70,3 +70,18 @@ def test_issue_body_is_capped_and_lists_my_role_first():
     assert len(body) < 65536
     assert "…and" in body and "(5001)" in body
     assert body.index("Financial Analyst") < body.index("Machine Operator 0")
+
+
+def test_rate_limited_source_gets_a_second_pass(tmp_path):
+    calls = {"clorox": 0}
+
+    def fetcher(src):
+        if src["name"] == "clorox":
+            calls["clorox"] += 1
+            if calls["clorox"] == 1:
+                raise RuntimeError("429 Too Many Requests")
+        return [{"title": "x", "externalPath": "/p", "bulletFields": ["R1"]}]
+
+    results = run.fetch_all("2026-11-08", NOW, tmp_path, SRCS, fetcher, retry_wait=0)
+    assert all(r["ok"] for r in results) and calls["clorox"] == 2
+    assert (tmp_path / "2026-11-08" / "clorox.json.gz").exists()

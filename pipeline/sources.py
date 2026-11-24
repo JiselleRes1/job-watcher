@@ -73,7 +73,8 @@ def source_by_name(name):
 # --------------------------------------------------------------------------
 # HTTP helper
 # --------------------------------------------------------------------------
-def _request(method, url, retries=3, **kwargs):
+def _request(method, url, retries=4, **kwargs):
+    """Request JSON, backing off (and honouring Retry-After) when the board says 429."""
     last = None
     for attempt in range(retries):
         try:
@@ -82,7 +83,13 @@ def _request(method, url, retries=3, **kwargs):
             return resp.json()
         except (requests.RequestException, ValueError) as exc:
             last = exc
-            time.sleep(2 * (attempt + 1))
+            if attempt == retries - 1:
+                break
+            wait = 5 * 2 ** attempt  # 5, 10, 20 seconds
+            retry_after = getattr(getattr(exc, "response", None), "headers", {}).get("Retry-After", "")
+            if retry_after.isdigit():
+                wait = max(wait, min(int(retry_after), 120))
+            time.sleep(wait)
     raise last
 
 
@@ -90,6 +97,7 @@ def _request(method, url, retries=3, **kwargs):
 # Fetchers
 # --------------------------------------------------------------------------
 WORKDAY_PAGE = 20  # Workday's page size limit
+PAGE_PAUSE = 0.2
 
 
 def fetch_workday(src):
@@ -106,6 +114,7 @@ def fetch_workday(src):
             break
         postings.extend(page)
         offset += WORKDAY_PAGE
+        time.sleep(PAGE_PAUSE)  # stay polite: ~400 requests per run
     if total and len(postings) < total * 0.9:
         raise RuntimeError(f"incomplete fetch: {len(postings)} of {total}")
     return postings
