@@ -1,35 +1,30 @@
 {
-  "run_time": "2026-11-24T05:00:19Z",
+  "run_time": "2026-11-24T05:23:20Z",
   "sources": [
     {
       "name": "tyson",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://tysonfoods.wd5.myworkdayjobs.com/wday/cxs/tysonfoods/TSN/jobs"
+      "ok": true,
+      "count": 745
     },
     {
       "name": "walmart",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://walmart.wd504.myworkdayjobs.com/wday/cxs/walmart/WalmartExternal/jobs"
+      "ok": true,
+      "count": 521
     },
     {
       "name": "jbhunt",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://jbhunt.wd501.myworkdayjobs.com/wday/cxs/jbhunt/Careers/jobs"
+      "ok": true,
+      "count": 416
     },
     {
       "name": "att",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://att.wd1.myworkdayjobs.com/wday/cxs/att/ATTGeneral/jobs"
+      "ok": true,
+      "count": 1142
     },
     {
       "name": "mckesson",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://mckesson.wd3.myworkdayjobs.com/wday/cxs/mckesson/External_Careers/jobs"
+      "ok": true,
+      "count": 693
     },
     {
       "name": "toyota",
@@ -38,9 +33,8 @@
     },
     {
       "name": "kimberlyclark",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://kimberlyclark.wd1.myworkdayjobs.com/wday/cxs/kimberlyclark/GLOBAL/jobs"
+      "ok": true,
+      "count": 139
     },
     {
       "name": "ti",
@@ -49,45 +43,38 @@
     },
     {
       "name": "rtx",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://globalhr.wd5.myworkdayjobs.com/wday/cxs/globalhr/REC_RTX_Ext_Gateway/jobs"
+      "ok": true,
+      "count": 360
     },
     {
       "name": "kraftheinz",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://heinz.wd1.myworkdayjobs.com/wday/cxs/heinz/KraftHeinz_Careers/jobs"
+      "ok": true,
+      "count": 961
     },
     {
       "name": "smucker",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://smucker.wd5.myworkdayjobs.com/wday/cxs/smucker/US_External_Careers/jobs"
+      "ok": true,
+      "count": 118
     },
     {
       "name": "conagra",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://conagrabrands.wd1.myworkdayjobs.com/wday/cxs/conagrabrands/Careers_US/jobs"
+      "ok": true,
+      "count": 233
     },
     {
       "name": "clorox",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://clorox.wd1.myworkdayjobs.com/wday/cxs/clorox/Clorox/jobs"
+      "ok": true,
+      "count": 179
     },
     {
       "name": "mondelez",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://mdlz.wd3.myworkdayjobs.com/wday/cxs/mdlz/External/jobs"
+      "ok": true,
+      "count": 1442
     },
     {
       "name": "colliers",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://colliers.wd3.myworkdayjobs.com/wday/cxs/colliers/Colliers-External-Career-Site/jobs"
+      "ok": true,
+      "count": 277
     }
   ]
 }
